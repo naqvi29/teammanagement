@@ -1,0 +1,63 @@
+{% extends "layoutadmin.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="add">
+                <a href="/addnew/customer"><button class="btn-outline-success btn-sm">Add a new customer</button></a>
+              </div>
+  
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>password</th>
+                    <th>Role</th>
+                    <th>Profile Picture</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user_data in user_data %}
+                  <tr>
+                    <td>{{ user_data.name }}</td>
+                    <td>{{ user_data.user_name }}</td>
+                    <td>{{ user_data.password }}</td>
+                    <td>{{ user_data.role }}</td>
+                    <td><a href="static/images/{{user_data.img}}">{{user_data.img}}</a></td>
+                    <td><a href="/edit/user_data/{{ user_data._id }}"><button type="button"
+                          class="btn-outline-info btn-sm btn-block">edit</button>
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/delete/user_data-{{ user_data._id }}"><button onclick="return myFunction()" type="button"
+                          class="btn-outline-danger btn-sm btn-block">Delete</button>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+  
+                  </tfoot>
+              </table>
+            </div>
+  
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+{% endblock %}
